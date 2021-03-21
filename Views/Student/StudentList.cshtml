@@ -1,0 +1,208 @@
+﻿@model List<Student>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>StudentList</title>
+</head>
+<body>
+    <section class="mt-2 container">
+
+        <div class="container mt-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between">
+                    <div>
+                        <h6 class="m-0 font-weight-bold text-primary">Students List</h6>
+                    </div>
+                    <div>
+                        <a type="button" class="close mr-3 mt-2" href="~/Home/Index">
+                            ×
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-2">
+                        <a name="addStudnet" id="addStudnet" class="btn btn-success" href="~/Student/Create"
+                           role="button">
+                            Add
+                            Stdent
+                        </a>
+                        <a name="addStudnet" id="addStudnet" class="btn btn-outline-primary" href="~/student/login"
+                           role="button">
+                            Login
+                        </a>
+                        @Ajax.ActionLink("Show Cookies", "showCookies", "Student", new AjaxOptions()
+                   {
+                       UpdateTargetId = "cookies",
+                       InsertionMode = InsertionMode.Replace,
+                       OnComplete = "showCookiesModel"
+                   }, new { @class = "btn btn-outline-dark " })
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Img</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Email</th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img width="80" height="80" src="~/Imgs/@item.Img"
+                                                 class="rounded-circle" alt="">
+                                        </td>
+                                        <td>@item.Id</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Age</td>
+                                        <td>@item.Email</td>
+                                        <td class="d-flex justify-content-end">
+                                            @Ajax.ActionLink("inside Page", "inPageAjaxDetailes", "Student", new { item.Id }, new AjaxOptions()
+                                       {
+                                           UpdateTargetId = "div1",
+                                           InsertionMode = InsertionMode.Replace
+                                       }, new { @class = "btn btn-warning flex-sm-shrink-1 mr-2" })
+
+                                            @Ajax.ActionLink("Detailes Model", "modelAjaxDetailes", "Student", new { item.Id }, new AjaxOptions()
+                                       {
+                                           UpdateTargetId = "div2",
+                                           InsertionMode = InsertionMode.Replace,
+                                           OnComplete = "showModel"
+                                       }, new { @class = "btn btn-dark flex-sm-shrink-1 mr-2" })
+
+                                            <a href="~/Student/Update/@item.Id" class="btn btn-info   flex-sm-shrink-1 mr-2">
+                                                Update
+                                            </a>
+                                            <button id="deleteBtn" type="button" class="btn btn-danger  flex-sm-shrink-1"
+                                                    data-toggle="modal"
+                                                    data-target="#modelId" onclick="createDynamicDeleteLink(this)" onblur="" value="~/Student/Delete/@item.Id">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container mt-4">
+            <div class="card shadow" id="div1">
+
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Confirmation</h5>
+                    <button type="button" href="/students" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are You Sure about Deleting This Student
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a id="modelDeleteModel" href="#" class="btn btn-danger">
+                        Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Student Detailes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="div2">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <!-- Modal -->
+    <div class="modal" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cookies</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="cookies">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        function createDynamicDeleteLink(x) {
+            $('#modelDeleteModel').attr("href", x.value);
+        }
+
+        function showModel() {
+            $('#exampleModal').modal('show');
+        }
+
+        function showCookiesModel() {
+            $('#exampleModal2').modal('show');
+        }
+    </script>
+
+
+</body>
+</html>
+
+

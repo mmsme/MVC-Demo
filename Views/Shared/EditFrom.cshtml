@@ -1,0 +1,12 @@
+﻿@model Student
+@Html.TextBoxFor(a => a.Name, new { type = "text", @class = "form-control", placeholder = "Student Name" })
+@Html.ValidationMessageFor(a => a.Name)
+@Html.TextBoxFor(a => a.Age, new { type = "number", @class = "form-control", placeholder = "Student Age" })
+@Html.ValidationMessageFor(a => a.Age)
+@Html.TextBoxFor(a => a.Email, new { type = "text", @class = "form-control", placeholder = "Email" })
+@Html.ValidationMessageFor(a => a.Email)
+@Html.TextBoxFor(a => a.Password, new { type = "password", @class = "form-control", placeholder = "Password" })
+@Html.ValidationMessageFor(a => a.Password)
+@Html.TextBoxFor(a => a.CPassword, new { type = "password", @class = "form-control", placeholder = "Confirm Password" })
+@Html.ValidationMessageFor(a => a.CPassword)
+<input type="file" name="img" class="form-control-file m-4" />

@@ -1,0 +1,4 @@
+﻿@model Department
+@Html.TextBoxFor(a => a.Name, new { type = "text", @class = "form-control", placeholder = "Student Name", required = "true" })
+@Html.TextBoxFor(a => a.NumOfIns, new { type = "number", @class = "form-control mt-1", placeholder = "Number Of Ins", min = "5", max = "25", required = "true" })
+@Html.TextBoxFor(a => a.NumOfStds, new { type = "number", @class = "form-control mt-1", placeholder = "Number Of Student", min = "25", max = "250", required = "true" })

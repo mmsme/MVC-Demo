@@ -1,0 +1,50 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .navbar {
+            background-color: #1b262c;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .myActive {
+            background-color: tomato;
+        }
+    </style>
+    <title>Index</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand h6 text-danger" href="#">ITI</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+                aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/about/AboutList">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Student/StudentList">Student</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Department/DeptList">Department</a>
+                </li>
+            </ul>
+
+
+        </div>
+    </nav>
+</body>
+</html>

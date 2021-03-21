@@ -1,0 +1,109 @@
+﻿@model Student
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .form-control {
+            margin: 1em auto;
+            border-radius: 1.5em;
+            padding: 1.5ex;
+        }
+
+        .btn-user {
+            border-radius: 2em;
+            padding: 1ex;
+        }
+
+        #showInfoSection {
+            background-color: #f3c623;
+            transition: all 2s;
+        }
+
+      
+        .card {
+            overflow: hidden;
+        }
+    </style>
+    <title>Create</title>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div id="showInfoSection"
+                                 class="col-lg-6 d-none d-lg-block align-content-center text-center p-3">
+                                <img src="../../Imgs/undraw_profile_2.svg" class="img-fluid
+                                rounded-circle shadow-lg mb-4" alt="" width="100" height="100">
+                                <div>
+                                    <table class="table" style="color:#f7f7f7">
+                                        <tbody>
+                                            <tr>
+                                                <td>ID</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Name</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Age</td>
+
+                                            <tr>
+                                                <td>Email</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Password</td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <a type="button" class="close mr-3 mt-2" href="~/Student/StudentList">
+                                    &times;
+                                </a>
+                                <div class="p-5">
+
+                                    <div class="text-center">
+                                        <h1 class="h3 mb-4" style="color: rgba(0, 0, 0, 0.60)">Add Form</h1>
+                                    </div>
+                                    @using (Html.BeginForm("Create", "Student", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-auto", style = "margin: auto" }))
+                                    {
+                                        @Html.Partial("EditFrom")
+                                        <input type="submit" class="btn btn-success btn-user btn-block"
+                                               value="Add New Student" />
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</body>
+</html>

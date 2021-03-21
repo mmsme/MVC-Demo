@@ -1,0 +1,33 @@
+﻿@model LoginViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>login</title>
+</head>
+<body>
+    <div class="card mt-5 offset-0 col-12 offset-md-4 col-md-4  text-center">
+        <div class="card-body ">
+            <div>
+                @using (Html.BeginForm("login", "student", FormMethod.Post))
+                {
+                    <p class="h3 text-success m-4"> Login </p>
+
+
+                    @Html.TextBoxFor(a => a.Email, new {@class = "form-control", placeholder= "Email", name = "email" })
+                    @Html.ValidationMessageFor(a => a.Email)
+                    @Html.TextBoxFor(a => a.Password, new { @class = "form-control mt-2", name="password", placeholder= "Password" })
+                    @Html.ValidationMessageFor(a => a.Password)
+        
+                    <button type="submit" class="btn btn-block btn-success mb-4 mt-4 "> Login</button>}
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+</html>

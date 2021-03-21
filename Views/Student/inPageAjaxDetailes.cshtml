@@ -1,0 +1,44 @@
+﻿@model Student
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+
+        <div class="row m-2">
+            <div class="col-12 col-md-6 d-flex justify-content-center p-4">
+                <img src="~/Imgs/@Model.Img"
+                     class="img-fluid img-thumbnail alt="" srcset="">
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center">
+                <table class="table m-4">
+                    <thead class="thead-dark">
+                        <tr>
+
+                            <th>Student</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>@Model.Id</td>
+                        </tr>
+
+                        <tr>
+                            <td>Name</td>
+                            <td>@Model.Name</td>
+                        </tr>
+
+                        <tr>
+                            <td>Age</td>
+                            <td>@Model.Age</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>@Model.Email</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
